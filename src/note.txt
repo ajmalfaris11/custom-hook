@@ -1,0 +1,25 @@
+__________________________________________________________
+===== HOOKS ====== HOOKS ====== HOOKS ====== HOOKS ====== 
+__________________________________________________________
+
+# useState, useEffect, and useRef are pre-built Hooks in React.js.
+# All Hooks are functions.
+# Hooks must start with "use," which helps identify them as Hooks separate from regular functions.
+# We can technically create functions without starting with "use," but using the "use" prefix is the standard convention to denote Hooks.
+# useRef accepts one argument, the initial value for the ref object.
+# useEffect accepts two arguments: the first is a callback function, and the second is an optional dependencies array.
+# useState accepts one argument, which is the initial state value.
+
+ Return Values:-
+ _______________
+
+# useState returns an array with two elements: the current state value and a function to update that state. Destructuring is commonly used to access these values.
+# useEffect does not return a value; it handles side effects.
+# useRef returns a mutable ref object whose .current property is initialized to the passed argument.
+
+ Additional Points:-
+ ____________________
+
+* Avoid Direct DOM Manipulation: React's virtual DOM management makes useRef ideal for directly accessing and modifying DOM elements.
+* Dependency Array in useEffect: Leaving the dependency array empty [] makes useEffect run only once after the initial render. Adding dependencies triggers it on specific state or prop changes.
+* Custom Hooks: You can create your own custom hooks, but they must start with "use" by convention (e.g., useFetchData).
