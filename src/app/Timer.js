@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 
 export default function Timer() {
 
-    const [value, start, stop] = useRunTimer(0);
+    const [value, start, stop, reset] = useRunTimer(0);
 
   return (
     <div className='timer'>
@@ -10,7 +10,7 @@ export default function Timer() {
       <div>
         <button onClick={start}>START</button>
         <button onClick={stop}>STOP</button>
-        <button >RESET</button>
+        <button onClick={reset}>RESET</button>
       </div>
     </div>
   )
@@ -35,6 +35,11 @@ function useRunTimer(){
         clearInterval(interval.current);
     }
 
-    return [value, start, stop];
+    const reset = () => {
+        stop();
+        setValue(0)
+    }
+
+    return [value, start, stop, reset];
 
 }
