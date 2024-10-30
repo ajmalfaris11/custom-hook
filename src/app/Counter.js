@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
+
 export default function Counter() {
   const [number, increment, decrement] = useCounter();
 
   return (
     <div className="counter">
-      <button onClick={decrement}>-</button>
+      <button className="counterBtn" onClick={decrement}>-</button>
       <h1>{number}</h1>
-      <button onClick={increment}>+</button>
+      <button className="counterBtn" onClick={increment}>+</button>
     </div>
   );
 }
