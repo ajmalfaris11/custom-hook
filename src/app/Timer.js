@@ -7,10 +7,10 @@ export default function Timer() {
   return (
     <div className='timer'>
       <h1>{value}</h1>
-      <div>
-        <button onClick={start}>START</button>
-        <button onClick={stop}>STOP</button>
-        <button onClick={reset}>RESET</button>
+      <div className='tamerBtns'>
+        <button className='timerBtn' onClick={start}>START</button>
+        <button className='timerBtn' onClick={stop}>STOP</button>
+        <button className='timerBtn' onClick={reset}>RESET</button>
       </div>
     </div>
   )
@@ -21,6 +21,7 @@ function useRunTimer(){
     const interval = useRef();
     const [value, setValue] = useState(0);
 
+    // start the timer
     const start = () => {
         interval.current = setInterval(
             () => {
@@ -31,10 +32,12 @@ function useRunTimer(){
         
     }
 
+    // stop the timer
     const stop = ()=> {
         clearInterval(interval.current);
-    }
+    } 
 
+    // reset the timer
     const reset = () => {
         stop();
         setValue(0)
