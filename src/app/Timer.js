@@ -1,48 +1,46 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 
 export default function Timer() {
+    const [value, start, stop, reset] = useRunTimer();
 
-    const [value, start, stop, reset] = useRunTimer(0);
-
-  return (
-    <div className='timer'>
-      <h1>{value}</h1>
-      <div className='tamerBtns'>
-        <button className='timerBtn' onClick={start}>START</button>
-        <button className='timerBtn' onClick={stop}>STOP</button>
-        <button className='timerBtn' onClick={reset}>RESET</button>
-      </div>
-    </div>
-  )
+    return (
+        <div className='timer'>
+            <h1>{value}</h1>
+            <div className='timerBtns'>
+                <button className='timerBtn' onClick={start}>START</button>
+                <button className='timerBtn' onClick={stop}>STOP</button>
+                <button className='timerBtn' onClick={reset}>RESET</button>
+            </div>
+        </div>
+    );
 }
 
-function useRunTimer(){
-
-    const interval = useRef();
+function useRunTimer() {
+    const interval = useRef(null);
     const [value, setValue] = useState(0);
 
-    // start the timer
+    // Start the timer
     const start = () => {
-        interval.current = setInterval(
-            () => {
-           setValue(value => value+1)
-        },
-        1000
-    );
-        
-    }
+        if (!interval.current) {
+            interval.current = setInterval(() => {
+                setValue(value => value + 1);
+            }, 1000);
+        } else {
+          setValue(value => 0 );
+        }
+    };
 
-    // stop the timer
-    const stop = ()=> {
+    // Stop the timer
+    const stop = () => {
         clearInterval(interval.current);
-    } 
+        interval.current = false;  // Reset interval reference to allow restart
+    };
 
-    // reset the timer
+    // Reset the timer
     const reset = () => {
         stop();
-        setValue(0)
-    }
+        setValue(0);
+    };
 
     return [value, start, stop, reset];
-
 }
